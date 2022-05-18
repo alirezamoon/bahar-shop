@@ -1,0 +1,80 @@
+export const productsData = [
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+  {
+    title: "دستبند خوشگل",
+    price: "4000000",
+    img: "/assets/images/bracelet.jpg",
+    count: 10,
+  },
+]
