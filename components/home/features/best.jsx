@@ -29,7 +29,7 @@ const Best = () => {
             i > 5 ? (
               <></>
             ) : (
-              <Box sx={{ width: "200px", height: "200px" }}>
+              <Box sx={{ width: "200px" }}>
                 <Card {...product} />
               </Box>
             )
