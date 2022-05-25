@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { users } from "data/users"
 
 const initialState = {
   user: {},
-  seller: {},
+  users: users,
 }
 
 const profileSlice = createSlice({
@@ -12,10 +13,11 @@ const profileSlice = createSlice({
     setUser(state, action) {
       state.user = action.payload
     },
-    setSeller(state, action) {
-      state.seller = action.payload
+    setUsers(state, action) {
+      state.users = [...state.users, action.payload]
     },
   },
 })
-export const { setUser, setSeller } = profileSlice.actions
+
+export const { setUser, setSeller, setUsers } = profileSlice.actions
 export default profileSlice.reducer

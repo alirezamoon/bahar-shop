@@ -4,12 +4,14 @@ import { Box, Button, Icon, IconButton, useTheme } from "@mui/material"
 import { User, HambergerMenu, ShoppingCart } from "iconsax-react"
 import Menu from "../menu"
 import Divider from "components/ui/divider"
+import { useSelector } from "react-redux"
 
 const Toolbar = () => {
   const router = useRouter()
   const theme = useTheme()
 
   const [openDrawer, setOpenDrawer] = useState(false)
+  const { user } = useSelector((state) => state.profile)
 
   return (
     <Box
@@ -88,7 +90,7 @@ const Toolbar = () => {
                 },
               }}
             >
-              ورود
+              {user?.username ? user.username : "ورود"}
             </Box>
             <Icon
               sx={{

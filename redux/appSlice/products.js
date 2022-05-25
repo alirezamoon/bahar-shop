@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { productsData } from "data/products"
 
 const initialState = {
-  products: [],
+  products: productsData,
 }
 
 const productsSlice = createSlice({

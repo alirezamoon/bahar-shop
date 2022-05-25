@@ -1,12 +1,12 @@
 import { useFormik } from "formik"
 import * as yup from "yup"
 import { useDispatch, useSelector } from "react-redux"
-import { setUser } from "redux/appSlice/profile"
+import { setUser, setUsers } from "redux/appSlice/profile"
 import { Box, Button, TextField } from "@mui/material"
 import { useRouter } from "next/router"
-import Link from "next/link"
+import nextId from "react-id-generator"
 
-const Login = () => {
+const Register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { users } = useSelector((state) => state.profile)
@@ -23,18 +23,14 @@ const Login = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // if (users.some((user) => values.username == user.username)) {
-      //   dispatch(setUser(values))
-      //   router.push("/")
-      // }
-
-      users.map((user) => {
-        if (user.username == values.username)
-          if (user.password == values.password) {
-            dispatch(setUser(user))
-            router.push("/")
-          }
-      })
+      const id = nextId()
+      if (users.some((user) => values.username == user.username)) {
+        // repetetive user
+      } else {
+        dispatch(setUser({ ...values, role: "user", id: id }))
+        dispatch(setUsers({ ...values, role: "user", id: id }))
+        router.push("/")
+      }
     },
   })
 
@@ -83,12 +79,9 @@ const Login = () => {
         <Button type="submit" variant="contained" sx={{ width: "100%" }}>
           ورود
         </Button>
-        <Link href="/register">
-          <Button variant="outlined">ثبت نام</Button>
-        </Link>
       </Box>
     </Box>
   )
 }
 
-export default Login
+export default Register

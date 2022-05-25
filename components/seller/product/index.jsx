@@ -1,11 +1,66 @@
 import Stepper from "../stepper"
-import { Box } from "@mui/material"
+import { Box, Button, Typography } from "@mui/material"
+import { useSelector } from "react-redux"
+import Card from "common/card"
+import { useRouter } from "next/router"
 
 const Products = () => {
+  const router = useRouter()
+
+  const { user } = useSelector((state) => state.profile)
+
   return (
     <Box>
       <Stepper />
-      <Box sx={{ bgcolor: "#fff", borderRadius: "15px", my: "20px" }}></Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          bgcolor: "#fff",
+          borderRadius: "15px",
+          my: "20px",
+          p: "32px",
+        }}
+      >
+        <Button
+          color="blue"
+          variant="contained"
+          sx={{
+            alignSelf: "end",
+            borderRadius: "12px",
+            width: "150px",
+            marginBottom: "16px",
+            "& span": { fontSize: "24px", marginRight: "12px" },
+          }}
+          onClick={() => router.push("products/add")}
+        >
+          افزودن <span>+</span>
+        </Button>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+          }}
+        >
+          {user?.products ? (
+            user?.products?.map((product, i) => (
+              <Box
+                sx={{
+                  marginBottom: "16px",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  boxShadow: "0 5px 4px #ddd",
+                }}
+              >
+                <Card {...product} />
+              </Box>
+            ))
+          ) : (
+            <Typography>محصولی وجود ندارد</Typography>
+          )}
+        </Box>
+      </Box>
     </Box>
   )
 }

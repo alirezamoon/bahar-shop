@@ -2,7 +2,15 @@ import { Box, Button, Typography } from "@mui/material"
 
 const Card = ({ title, price, img }) => {
   return (
-    <Box sx={{ maxWidth: "300px", width: "100%" }}>
+    <Box
+      sx={{
+        maxWidth: "300px",
+        width: "100%",
+        bgcolor: "#fff",
+        borderRadius: "8px",
+        overflow: "hidden",
+      }}
+    >
       <Box
         component="img"
         src={img}
@@ -13,9 +21,22 @@ const Card = ({ title, price, img }) => {
           objectFit: "cover",
         }}
       />
-      <Typography>{title}</Typography>
-      <Typography>{price}</Typography>
-      <Button color="pink" sx={{ width: "100%" }}>
+      <Typography sx={{ marginRight: "8px", fontWeight: 700 }}>
+        {title}
+      </Typography>
+      <Typography
+        sx={{
+          marginRight: "8px",
+          "& span": { color: "gray.100", fontSize: "12px" },
+        }}
+      >
+        {price} <span>تومان</span>
+      </Typography>
+      <Button
+        color="blue"
+        sx={{ width: "100%", borderRadius: 0, marginTop: "12px" }}
+        variant="contained"
+      >
         افزودن به سبد خرید
       </Button>
     </Box>

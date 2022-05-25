@@ -1,31 +1,36 @@
 import { Box, Button, TextField } from "@mui/material"
 import { useFormik } from "formik"
 import { useRouter } from "next/router"
-import { useDispatch } from "react-redux"
-import { setSeller } from "redux/appSlice/profile"
+import { useDispatch, useSelector } from "react-redux"
+import { setUser, setUsers } from "redux/appSlice/profile"
 import * as yup from "yup"
 import Stepper from "../stepper"
+import nextId from "react-id-generator"
+import { setSellers } from "redux/appSlice/sellers"
 
 const SellerInfo = () => {
   const dispatch = useDispatch()
   const router = useRouter()
 
+  const { user } = useSelector((state) => state.profile)
+
   const validationSchema = yup.object({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
-    phone: yup.string().required(),
+    username: yup.string().required(),
+    password: yup.string().required(),
   })
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      phone: "",
+      username: user?.username ? user.username : "",
+      password: user?.password ? user.password : "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      dispatch(setSeller(values))
-      router.push("/")
+      const id = nextId()
+      dispatch(setUser({ ...values, role: "seller", id: id }))
+      dispatch(setUsers({ ...values, role: "seller", id: id }))
+      dispatch(setSellers({ ...values, role: "seller", id: id }))
+      router.push("/seller/products")
     },
   })
 
@@ -56,31 +61,22 @@ const SellerInfo = () => {
           gap={2}
         >
           <TextField
-            name="firstName"
+            name="username"
             onChange={formik.handleChange}
-            value={formik.values.firstName}
-            placeholder="نام خود را وارد کنید"
+            value={formik.values.username}
+            placeholder="نام کاربری خود را وارد کنید"
             size="small"
-            error={Boolean(formik.errors.firstName) && formik.touched.firstName}
-            helperText={formik.touched.firstName && formik.errors.firstName}
+            error={Boolean(formik.errors.username) && formik.touched.username}
+            helperText={formik.touched.username && formik.errors.username}
           />
           <TextField
-            name="lastName"
+            name="password"
             onChange={formik.handleChange}
-            value={formik.values.lastName}
-            placeholder="نام خانوادگی خود را وارد کنید"
+            value={formik.values.password}
+            placeholder="رمزعبور خود را وارد کنید"
             size="small"
-            error={Boolean(formik.errors.lastName) && formik.touched.lastName}
-            helperText={formik.touched.lastName && formik.errors.lastName}
-          />
-          <TextField
-            name="phone"
-            onChange={formik.handleChange}
-            value={formik.values.phone}
-            placeholder="شماره موبایل خود را وارد کنید"
-            size="small"
-            error={Boolean(formik.errors.phone) && formik.touched.phone}
-            helperText={formik.touched.phone && formik.errors.phone}
+            error={Boolean(formik.errors.password) && formik.touched.password}
+            helperText={formik.touched.password && formik.errors.password}
           />
           <Button type="submit" variant="contained" sx={{ width: "100%" }}>
             ورود
