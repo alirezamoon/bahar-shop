@@ -1,6 +1,8 @@
-import { TextField } from "@mui/material"
+import { Button, TextField } from "@mui/material"
 import { Box } from "@mui/system"
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { addProduct } from "redux/appSlice/profile"
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -11,6 +13,13 @@ const AddProduct = () => {
     img: null,
   })
 
+  const { user } = useSelector((state) => state.profile)
+  const dispatch = useDispatch()
+
+  const addProductHandler = () => {
+    dispatch(addProduct({ ...product, username: user.username }))
+  }
+  console.log(user)
   return (
     <Box sx={{ bgcolor: "#fff", borderRadius: "15px", height: "100%" }}>
       <Box
@@ -45,10 +54,11 @@ const AddProduct = () => {
           onChange={(e) => {
             setProduct({
               ...product,
-              quantity: URL.createObjectURL(e.target.files[0]),
+              img: URL.createObjectURL(e.target.files[0]),
             })
           }}
         />
+        <Button onClick={addProductHandler}>ارسال</Button>
       </Box>
     </Box>
   )

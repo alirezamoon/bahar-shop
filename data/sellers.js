@@ -1,8 +1,8 @@
 export const sellers = [
   {
     id: "1",
-    username: "alireza",
-    password: "1111",
+    username: "a",
+    password: "a",
     products: [
       {
         id: "2",

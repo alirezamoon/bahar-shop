@@ -1,8 +1,8 @@
 export const users = [
   {
     id: "1",
-    username: "alireza",
-    password: "1111",
+    username: "a",
+    password: "a",
     role: "seller",
     products: [
       {
