@@ -1,6 +1,19 @@
 import { Box, Button, Typography } from "@mui/material"
+import { useDispatch, useSelector } from "react-redux"
+import { addToCard } from "redux/appSlice/profile"
 
-const Card = ({ title, price, img }) => {
+const Card = ({ product }) => {
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.profile)
+
+  const addToCartHandler = () => {
+    dispatch(
+      user?.cart
+        ? addToCard({ username: user.username, cart: [...user?.cart, product] })
+        : addToCard({ username: user.username, cart: [product] })
+    )
+  }
+
   return (
     <Box
       sx={{
@@ -13,7 +26,7 @@ const Card = ({ title, price, img }) => {
     >
       <Box
         component="img"
-        src={img}
+        src={product?.img}
         sx={{
           width: "100%",
           height: "100%",
@@ -22,7 +35,7 @@ const Card = ({ title, price, img }) => {
         }}
       />
       <Typography sx={{ marginRight: "8px", fontWeight: 700 }}>
-        {title}
+        {product?.title}
       </Typography>
       <Typography
         sx={{
@@ -30,12 +43,13 @@ const Card = ({ title, price, img }) => {
           "& span": { color: "gray.100", fontSize: "12px" },
         }}
       >
-        {price} <span>تومان</span>
+        {product?.price} <span>تومان</span>
       </Typography>
       <Button
         color="blue"
         sx={{ width: "100%", borderRadius: 0, marginTop: "12px" }}
         variant="contained"
+        onClick={addToCartHandler}
       >
         افزودن به سبد خرید
       </Button>

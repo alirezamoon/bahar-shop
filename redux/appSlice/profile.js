@@ -38,17 +38,25 @@ const profileSlice = createSlice({
         products: [...arr[index].products, action.payload],
       }
 
-      state.user = {
-        ...arr[index],
-        // products: [...arr[index].products, action.payload],
-      }
+      state.user = { ...arr[index] }
 
       state.users = index == -1 ? [...state.users, action.payload] : arr
+    },
+    addToCard(state, action) {
+      let arr = [...state.users]
+      let index = arr.findIndex(
+        (obj) => obj.username === action.payload.username
+      )
+      state.user = {
+        ...arr[index],
+        cart: action.payload.cart,
+      }
     },
   },
 })
 
-export const { setUser, setSeller, setUsers, addProduct } = profileSlice.actions
+export const { setUser, setSeller, setUsers, addProduct, addToCard } =
+  profileSlice.actions
 export default profileSlice.reducer
 
 // setUsers(state, action) {

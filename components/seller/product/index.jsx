@@ -53,7 +53,7 @@ const Products = () => {
                   boxShadow: "0 5px 4px #ddd",
                 }}
               >
-                <Card {...product} />
+                <Card product={product} />
               </Box>
             ))
           ) : (

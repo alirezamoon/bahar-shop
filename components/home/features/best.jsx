@@ -30,7 +30,7 @@ const Best = () => {
               <></>
             ) : (
               <Box sx={{ width: "200px" }}>
-                <Card {...product} />
+                <Card product={product} />
               </Box>
             )
           return b
