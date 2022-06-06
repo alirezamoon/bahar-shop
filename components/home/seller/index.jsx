@@ -35,7 +35,7 @@ const Seller = () => {
           <Typography
             sx={{ color: "#9369eb", fontSize: "72px", fontWeight: 700 }}
           >
-            فروشنده تر شو
+            فروشنده شو
           </Typography>
           <Typography
             sx={{

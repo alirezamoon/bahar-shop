@@ -1,4 +1,5 @@
 import { Box } from "@mui/material"
+import Footer from "./footer"
 import Header from "./header"
 
 const MainLayout = ({ children }) => {
@@ -23,6 +24,7 @@ const MainLayout = ({ children }) => {
       >
         {children}
       </Box>
+      <Footer />
     </Box>
   )
 }

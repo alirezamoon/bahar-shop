@@ -97,7 +97,7 @@ const Main = () => {
           <Typography
             sx={{ color: "#fff", fontWeight: 700, marginTop: "30px" }}
           >
-            تضمین کیفیت
+            ارسال سریع
           </Typography>
         </Box>
       </Grid>

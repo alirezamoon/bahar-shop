@@ -35,7 +35,18 @@ const Register = () => {
   })
 
   return (
-    <Box sx={{ height: "100%", display: "flex", justifyContent: "center" }}>
+    <Box
+      sx={{
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+        bgcolor: "#fff",
+        borderRadius: "15px",
+        my: "20px",
+        p: "32px",
+        minHeight: "500px",
+      }}
+    >
       <Box
         component="form"
         onSubmit={formik.handleSubmit}

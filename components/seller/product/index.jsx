@@ -20,6 +20,7 @@ const Products = () => {
           borderRadius: "15px",
           my: "20px",
           p: "32px",
+          minHeight: "500px",
         }}
       >
         <Button

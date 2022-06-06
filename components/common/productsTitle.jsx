@@ -7,7 +7,7 @@ const ProductsTitle = ({ text, leftElement, sx }) => {
   return (
     <Box
       sx={{
-        m: "0 0 32px 0",
+        m: "32px 0 32px 0",
         justifyContent: "space-between",
         display: "flex",
         alignItems: "center",
@@ -41,7 +41,7 @@ const ProductsTitle = ({ text, leftElement, sx }) => {
           <Button
             LinkComponent="a"
             href={`/`}
-            color="orange"
+            color="blue"
             variant="contained"
             sx={{
               width: "155px",

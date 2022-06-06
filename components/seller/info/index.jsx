@@ -35,7 +35,7 @@ const SellerInfo = () => {
   })
 
   return (
-    <Box sx={{ height: "100%" }}>
+    <Box sx={{ height: "100%", minHeight: "500px" }}>
       <Stepper />
       <Box
         sx={{
