@@ -21,7 +21,7 @@
     "react-id-generator": "^3.0.2",
     "react-redux": "^8.0.1",
     "redux": "^4.2.0",
-    "swiper": "^8.1.4",
+    "swiper": "8.0.3",
     "yup": "^0.32.11"
   },
   "devDependencies": {

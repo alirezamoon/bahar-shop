@@ -2,6 +2,7 @@ import { Button, TextField } from "@mui/material"
 import { Box } from "@mui/system"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { addNewProduct } from "redux/appSlice/products"
 import { addProduct } from "redux/appSlice/profile"
 
 const AddProduct = () => {
@@ -18,6 +19,7 @@ const AddProduct = () => {
 
   const addProductHandler = () => {
     dispatch(addProduct({ ...product, username: user.username }))
+    dispatch(addNewProduct(product))
   }
   console.log(user)
   return (

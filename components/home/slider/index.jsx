@@ -5,6 +5,7 @@ import "swiper/css/autoplay"
 import SwiperCore, { EffectFade, Pagination, Autoplay } from "swiper"
 import { sliderData } from "data/slider"
 import SliderCard from "./sliderCard"
+import "swiper/css"
 
 SwiperCore.use([EffectFade, Pagination, Autoplay])
 
@@ -52,16 +53,12 @@ const Slider = () => {
         // spaceBetween={20}
         slidesPerView={1}
         effect={"fade"}
-        pagination={{
-          clickable: true,
-        }}
-        autoplay={{
-          delay: 5000,
-        }}
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 5000 }}
       >
-        {sliderData.map((data) => (
+        {["ccc", "sss"].map((data) => (
           <SwiperSlide>
-            <SliderCard {...data} />
+            <Box>{data}</Box>
           </SwiperSlide>
         ))}
       </Swiper>
