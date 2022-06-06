@@ -37,10 +37,10 @@ const ProductsTitle = ({ text, leftElement, sx }) => {
       {leftElement ? (
         leftElement
       ) : (
-        <Link href={`/`}>
+        <Link href={`/products`}>
           <Button
             LinkComponent="a"
-            href={`/`}
+            href={`/products`}
             color="blue"
             variant="contained"
             sx={{
