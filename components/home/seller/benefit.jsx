@@ -2,38 +2,38 @@ import { Icon, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { Chart1, Global, I24Support, TagUser } from "iconsax-react"
 
-const benefitItem = (item) => (
-  <Box sx={{ position: "relative" }}>
-    <Box
-      sx={{
-        width: "154px",
-        height: "154px",
-        bgcolor: "#fff",
-        borderRadius: "16px",
-      }}
-    />
-    <Icon
-      component={item.icon}
-      sx={{
-        color: "#007BFF",
-        fontSize: "112px",
-        position: "absolute",
-        top: "-20px",
-      }}
-    />
-    <Typography
-      sx={{
-        position: "absolute",
-        bottom: "20px",
-        right: "50%",
-        whiteSpace: "nowrap",
-        fontWeight: 700,
-      }}
-    >
-      {item.title}
-    </Typography>
-  </Box>
-)
+// const benefitItem = (item) => (
+//   <Box sx={{ position: "relative" }}>
+//     <Box
+//       sx={{
+//         width: "154px",
+//         height: "154px",
+//         bgcolor: "#fff",
+//         borderRadius: "16px",
+//       }}
+//     />
+//     <Icon
+//       component={item.icon}
+//       sx={{
+//         color: "#007BFF",
+//         fontSize: "112px",
+//         position: "absolute",
+//         top: "-20px",
+//       }}
+//     />
+//     <Typography
+//       sx={{
+//         position: "absolute",
+//         bottom: "20px",
+//         right: "50%",
+//         whiteSpace: "nowrap",
+//         fontWeight: 700,
+//       }}
+//     >
+//       {item.title}
+//     </Typography>
+//   </Box>
+// )
 
 const Benefit = () => {
   const items = [
@@ -64,7 +64,39 @@ const Benefit = () => {
           width: "100%",
         }}
       >
-        {items.map((item) => benefitItem(item))}
+        {/* {items.map((item) => benefitItem(item))} */}
+        {items.map((item) => (
+          <Box sx={{ position: "relative" }}>
+            <Box
+              sx={{
+                width: "154px",
+                height: "154px",
+                bgcolor: "#fff",
+                borderRadius: "16px",
+              }}
+            />
+            <Icon
+              component={item.icon}
+              sx={{
+                color: "#007BFF",
+                fontSize: "112px",
+                position: "absolute",
+                top: "-20px",
+              }}
+            />
+            <Typography
+              sx={{
+                position: "absolute",
+                bottom: "20px",
+                right: "50%",
+                whiteSpace: "nowrap",
+                fontWeight: 700,
+              }}
+            >
+              {item.title}
+            </Typography>
+          </Box>
+        ))}
       </Box>
     </Box>
   )
