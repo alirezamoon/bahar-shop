@@ -56,8 +56,8 @@ const Slider = () => {
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000 }}
       >
-        {["ccc", "sss"].map((data) => (
-          <SwiperSlide>
+        {["ccc", "sss"].map((data, i) => (
+          <SwiperSlide key={i}>
             <Box>{data}</Box>
           </SwiperSlide>
         ))}

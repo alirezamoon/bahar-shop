@@ -46,8 +46,8 @@ const Info = () => {
         </Box>
       </Box>
       <Box sx={{ display: "flex" }} gap={4}>
-        {items.map((item) => (
-          <Item {...item} />
+        {items.map((item, i) => (
+          <Item {...item} key={i} />
         ))}
       </Box>
     </Box>

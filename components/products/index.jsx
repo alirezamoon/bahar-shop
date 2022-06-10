@@ -19,8 +19,8 @@ const Products = () => {
         flexWrap: "wrap",
       }}
     >
-      {products.map((product) => (
-        <Card product={product} variant="all" />
+      {products.map((product, i) => (
+        <Card product={product} variant="all" key={i} />
       ))}
     </Box>
   )

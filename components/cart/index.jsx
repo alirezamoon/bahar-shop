@@ -10,8 +10,8 @@ const Cart = () => {
     <Grid container spacing={2}>
       <Grid item xs={12} md={8}>
         <Box>
-          {user?.cart?.map((product) => (
-            <Card product={product} />
+          {user?.cart?.map((product, i) => (
+            <Card product={product} key={i} />
           ))}
         </Box>
       </Grid>

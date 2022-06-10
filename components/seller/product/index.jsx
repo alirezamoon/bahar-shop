@@ -53,6 +53,7 @@ const Products = () => {
                   overflow: "hidden",
                   boxShadow: "0 5px 4px #ddd",
                 }}
+                key={i}
               >
                 <Card product={product} />
               </Box>
