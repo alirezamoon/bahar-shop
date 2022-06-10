@@ -23,7 +23,10 @@ const Card = ({ product, sx }) => {
         bgcolor: "#fff",
         borderRadius: "8px",
         overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
         ...sx,
+        height: "100%",
       }}
     >
       <Box
@@ -31,7 +34,7 @@ const Card = ({ product, sx }) => {
         src={product?.img}
         sx={{
           width: "100%",
-          height: "100%",
+          flexGrow: 1,
           maxHeight: "300px",
           objectFit: "cover",
           p: "8px",

@@ -23,7 +23,6 @@ const Card = ({ product, sx }) => {
         width: "100%",
         bgcolor: "#fff",
         overflow: "hidden",
-        ...sx,
         boxShadow: "0 0 72px #ABB4BC ",
         position: "relative",
         paddingBottom: "32px",
@@ -32,9 +31,13 @@ const Card = ({ product, sx }) => {
         "&:hover button": {
           display: "block",
         },
+        ...sx,
       }}
     >
-      <IconButton sx={{ display: "none", position: "absolute", top: "0" }}>
+      <IconButton
+        sx={{ display: "none", position: "absolute", top: "0" }}
+        onClick={addToCartHandler}
+      >
         <ShoppingBag size="48" color="#007BFF" variant="Bulk" />
       </IconButton>
       <Box

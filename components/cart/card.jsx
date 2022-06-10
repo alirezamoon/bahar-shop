@@ -15,7 +15,7 @@ const Card = ({ product }) => {
       <Box
         component="img"
         src={product.img}
-        sx={{ width: "200px", height: "200px" }}
+        sx={{ width: "200px", height: "200px", p: "32px" }}
       />
       <Box>
         <Typography sx={{ marginRight: "8px", fontWeight: 700 }}>
