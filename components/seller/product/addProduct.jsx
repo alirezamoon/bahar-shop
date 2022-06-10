@@ -1,5 +1,6 @@
 import { Button, TextField } from "@mui/material"
 import { Box } from "@mui/system"
+import { useRouter } from "next/router"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addNewProduct } from "redux/appSlice/products"
@@ -16,10 +17,12 @@ const AddProduct = () => {
 
   const { user } = useSelector((state) => state.profile)
   const dispatch = useDispatch()
+  const router = useRouter()
 
   const addProductHandler = () => {
     dispatch(addProduct({ ...product, username: user.username }))
     dispatch(addNewProduct(product))
+    router.replace("/seller/products")
   }
   console.log(user)
   return (

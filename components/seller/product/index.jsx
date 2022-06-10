@@ -41,7 +41,7 @@ const Products = () => {
           sx={{
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: "space-between",
+            // justifyContent: "space-between",
           }}
         >
           {user?.products ? (
@@ -49,6 +49,7 @@ const Products = () => {
               <Box
                 sx={{
                   marginBottom: "16px",
+                  marginLeft: "28px",
                   borderRadius: "8px",
                   overflow: "hidden",
                   boxShadow: "0 5px 4px #ddd",
