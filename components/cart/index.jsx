@@ -1,6 +1,7 @@
 import { Button, Grid, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { useSelector } from "react-redux"
+import { splitNumber } from "utils/splitNum"
 import Card from "./card"
 
 const Cart = () => {
@@ -17,16 +18,30 @@ const Cart = () => {
       </Grid>
       <Grid item xs={12} md={4}>
         <Box sx={{ bgcolor: "#fff", borderRadius: "16px", p: "16px" }}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-around",
+              py: "50px",
+            }}
+          >
             <Typography>قیمت کل :</Typography>
-            <Typography>
-              {user?.cart?.reduce((prev, current) => prev + +current.price, 0)}
+            <Typography
+              sx={{
+                marginRight: "8px",
+                "& span": { color: "gray.100", fontSize: "12px" },
+              }}
+            >
+              {splitNumber(
+                user?.cart?.reduce((prev, current) => prev + +current.price, 0)
+              )}{" "}
+              <span>تومان</span>
             </Typography>
           </Box>
           <Button
             variant="contained"
             color="blue"
-            sx={{ width: "100%", height: "32px", marginTop: "100px" }}
+            sx={{ width: "100%", height: "32px" }}
           >
             پرداخت
           </Button>

@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material"
+import { splitNumber } from "utils/splitNum"
 
 const Card = ({ product }) => {
   return (
@@ -27,7 +28,7 @@ const Card = ({ product }) => {
             "& span": { color: "gray.100", fontSize: "12px" },
           }}
         >
-          {product?.price} <span>تومان</span>
+          {splitNumber(product?.price)} <span>تومان</span>
         </Typography>
       </Box>
     </Box>

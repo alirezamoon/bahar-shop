@@ -1,5 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material"
+import LoginModal from "components/ui/loginModal"
 import { ShoppingBag } from "iconsax-react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"
 import { splitNumber } from "utils/splitNum"
@@ -7,13 +9,19 @@ import { splitNumber } from "utils/splitNum"
 const Card = ({ product, sx }) => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.profile)
+  const [openLoginModal, setOpenLoginModal] = useState(false)
 
   const addToCartHandler = () => {
-    dispatch(
-      user?.cart
-        ? addToCard({ username: user.username, cart: [...user?.cart, product] })
-        : addToCard({ username: user.username, cart: [product] })
-    )
+    user?.username
+      ? dispatch(
+          user?.cart
+            ? addToCard({
+                username: user.username,
+                cart: [...user?.cart, product],
+              })
+            : addToCard({ username: user.username, cart: [product] })
+        )
+      : setOpenLoginModal(true)
   }
 
   return (
@@ -66,19 +74,10 @@ const Card = ({ product, sx }) => {
       >
         {splitNumber(product?.price)} <span>تومان</span>
       </Typography>
-      {/* <Button
-        color="blue"
-        sx={{
-          width: "100%",
-          borderRadius: 0,
-          marginTop: "12px",
-          borderTop: "1px solid #007BFF",
-        }}
-        variant="text"
-        onClick={addToCartHandler}
-      >
-        افزودن به سبد خرید
-      </Button> */}
+      <LoginModal
+        open={openLoginModal}
+        handleClose={() => setOpenLoginModal(false)}
+      />
     </Box>
   )
 }

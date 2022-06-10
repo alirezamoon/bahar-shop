@@ -5,13 +5,19 @@ import { User, HambergerMenu, ShoppingCart } from "iconsax-react"
 import Menu from "../menu"
 import Divider from "components/ui/divider"
 import { useSelector } from "react-redux"
+import LoginModal from "components/ui/loginModal"
 
 const Toolbar = () => {
   const router = useRouter()
   const theme = useTheme()
+  const [openLoginModal, setOpenLoginModal] = useState(false)
 
   const [openDrawer, setOpenDrawer] = useState(false)
   const { user } = useSelector((state) => state.profile)
+
+  const cartClickedHandler = () => {
+    user?.username ? router.push("/cart") : setOpenLoginModal(true)
+  }
 
   return (
     <Box
@@ -118,7 +124,7 @@ const Toolbar = () => {
             }}
             color="gray"
             variant="contained"
-            onClick={() => router.push("/cart")}
+            onClick={cartClickedHandler}
           >
             <Box
               component="span"
@@ -163,6 +169,10 @@ const Toolbar = () => {
           </Button>
         </Box>
       </Box>
+      <LoginModal
+        open={openLoginModal}
+        handleClose={() => setOpenLoginModal(false)}
+      />
     </Box>
   )
 }
