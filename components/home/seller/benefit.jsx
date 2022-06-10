@@ -65,8 +65,8 @@ const Benefit = () => {
         }}
       >
         {/* {items.map((item) => benefitItem(item))} */}
-        {items.map((item) => (
-          <Box sx={{ position: "relative" }}>
+        {items.map((item, i) => (
+          <Box sx={{ position: "relative" }} key={i}>
             <Box
               sx={{
                 width: "154px",

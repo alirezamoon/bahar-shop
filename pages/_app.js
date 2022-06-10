@@ -6,17 +6,17 @@ import theme from "core/theme"
 import { Provider } from "react-redux"
 
 function MyApp({ Component, pageProps }) {
-  const layouts = {
-    main: MainLayout,
-  }
-  const Layout = Component?.layout ? layouts[Component.layout] : null
+  // const layouts = {
+  //   main: MainLayout,
+  // }
+  // const Layout = Component?.layout ? layouts[Component.layout] : null
 
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <Layout>
+        <MainLayout>
           <Component {...pageProps} />
-        </Layout>
+        </MainLayout>
       </Provider>
     </ThemeProvider>
   )
