@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Typography } from "@mui/material"
+import { Box, IconButton, Typography } from "@mui/material"
 import { ShoppingBag } from "iconsax-react"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"

@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { useRouter } from "next/router"
 import { Box, Drawer, useTheme } from "@mui/material"
 import MenuItem from "./menuItem"

@@ -1,10 +1,8 @@
-import { Box, Skeleton, useTheme } from "@mui/material"
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
+import { Box, useTheme } from "@mui/material"
+import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css/pagination"
 import "swiper/css/autoplay"
 import SwiperCore, { EffectFade, Pagination, Autoplay } from "swiper"
-import { sliderData } from "data/slider"
-import SliderCard from "./sliderCard"
 import "swiper/css"
 
 SwiperCore.use([EffectFade, Pagination, Autoplay])

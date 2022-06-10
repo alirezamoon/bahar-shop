@@ -1,16 +1,9 @@
 import { useSelector } from "react-redux"
-import { Box, Button, Icon, useMediaQuery, useTheme } from "@mui/material"
-import { Navigation } from "swiper"
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
-import Link from "next/link"
+import { Box, useMediaQuery, useTheme } from "@mui/material"
 import ProductsTitle from "common/productsTitle"
-import { ArrowCircleLeft, ArrowCircleRight } from "iconsax-react"
 import Card from "common/card"
 
 const Best = () => {
-  const theme = useTheme()
-  const tablet = useMediaQuery("(max-width:800px)")
-  const mobile = useMediaQuery("(max-width:450px)")
   const { products } = useSelector((state) => state.products)
 
   return (
