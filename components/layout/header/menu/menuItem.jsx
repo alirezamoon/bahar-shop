@@ -4,14 +4,15 @@ import Link from "next/link"
 
 const MenuItem = ({ item, variant, disable }) => {
   const router = useRouter()
-  const isActive = router.pathname.includes(item.route)
+  // const isActive = router.pathname.includes(item.route, 1)
+  const isActive = router.pathname.split("/")[1] === item.route.split("/")[1]
 
   return (
     <>
       {variant === "drawer" ? (
         <Box
           sx={{
-            backgroundColor: "#1565C0",
+            backgroundColor: isActive ? "blue.dark" : "blue.main",
             height: "50px",
             width: "90%",
             display: "flex",
@@ -26,10 +27,10 @@ const MenuItem = ({ item, variant, disable }) => {
               width: "100%",
               cursor: "pointer",
               userSelect: "none",
-              color: isActive ? "gray.main" : "",
+              color: isActive ? "gray.main" : "blue.light",
               fontWeight: isActive ? 700 : 400,
               "& a": {
-                color: isActive ? "gray.main" : "",
+                color: isActive ? "gray.main" : "blue.light",
               },
             }}
           >
@@ -44,7 +45,6 @@ const MenuItem = ({ item, variant, disable }) => {
             height: "80px",
             display: "flex",
             alignItems: "center",
-            borderTop: isActive ? "3px solid #FFF" : "0",
             "&:last-child": {
               borderLeft: "none",
             },

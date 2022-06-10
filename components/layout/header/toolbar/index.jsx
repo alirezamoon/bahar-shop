@@ -58,13 +58,13 @@ const Toolbar = () => {
             },
           }}
         >
-          <IconButton color="white" onClick={() => setOpenDrawer(true)}>
+          <IconButton color="blue" onClick={() => setOpenDrawer(true)}>
             <Icon component={HambergerMenu} size="32" />
           </IconButton>
           <Divider mx="8px" h="20px" />
 
-          <IconButton color="white" onClick={() => router.push("/login")}>
-            <Icon component={User} color="#FFF" />
+          <IconButton color="blue" onClick={() => router.push("/login")}>
+            <Icon component={User} color="#5D6670" />
           </IconButton>
         </Box>
         <Menu openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
