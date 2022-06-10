@@ -63,10 +63,7 @@ const Toolbar = () => {
           </IconButton>
           <Divider mx="8px" h="20px" />
 
-          <IconButton
-            color="white"
-            onClick={() => router.push("/auth/login-register")}
-          >
+          <IconButton color="white" onClick={() => router.push("/login")}>
             <Icon component={User} color="#FFF" />
           </IconButton>
         </Box>
@@ -91,6 +88,7 @@ const Toolbar = () => {
               sx={{
                 paddingLeft: "12px",
                 fontWeight: 400,
+                color: user?.username ? "gray.100" : "gray.center",
                 [theme.breakpoints.down("md")]: {
                   display: "none",
                 },

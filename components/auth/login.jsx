@@ -5,11 +5,19 @@ import { setUser } from "redux/appSlice/profile"
 import { Box, Button, TextField, Typography } from "@mui/material"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import { useState } from "react"
+import Snackbar from "components/ui/snackbar"
 
 const Login = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { users } = useSelector((state) => state.profile)
+
+  const [snackbarVars, setSnackbarVars] = useState({
+    message: "",
+    open: false,
+    variant: "",
+  })
 
   const validationSchema = yup.object({
     username: yup.string().required(),
@@ -29,11 +37,22 @@ const Login = () => {
       // }
 
       users.map((user) => {
-        if (user.username == values.username)
+        if (user.username == values.username) {
           if (user.password == values.password) {
             dispatch(setUser(user))
             router.push("/")
           }
+          setSnackbarVars({
+            message: "رمزعبور اشتباه وارد شده است",
+            variant: "error",
+            open: true,
+          })
+        } else
+          setSnackbarVars({
+            message: "کاربری با این مشخصات وجود ندارد",
+            variant: "error",
+            open: true,
+          })
       })
     },
   })
@@ -81,6 +100,7 @@ const Login = () => {
           size="small"
           error={Boolean(formik.errors.password) && formik.touched.password}
           helperText={formik.touched.password && formik.errors.password}
+          type="password"
         />
         {/* <TextField
           name="phone"
@@ -103,6 +123,16 @@ const Login = () => {
           </Link>
         </Box>
       </Box>
+      <Snackbar
+        message={snackbarVars.message}
+        open={snackbarVars.open}
+        handleClose={() =>
+          setSnackbarVars((prev) => {
+            return { ...prev, open: false }
+          })
+        }
+        variant={snackbarVars.variant}
+      />
     </Box>
   )
 }

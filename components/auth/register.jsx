@@ -77,6 +77,7 @@ const Register = () => {
           size="small"
           error={Boolean(formik.errors.password) && formik.touched.password}
           helperText={formik.touched.password && formik.errors.password}
+          type="password"
         />
         {/* <TextField
           name="phone"
