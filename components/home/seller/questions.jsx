@@ -68,7 +68,7 @@ const Questions = () => {
         }}
       >
         <Box sx={{ mx: "16px" }}>{qa.map((item) => question(item))}</Box>
-        <Box component="img" src="/assets/images/question.png" />
+        <Box component="img" src="assets/images/question.png" />
       </Box>
     </Box>
   )
