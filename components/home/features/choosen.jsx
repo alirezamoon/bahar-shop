@@ -3,7 +3,7 @@ import { Box } from "@mui/material"
 import ProductsTitle from "common/productsTitle"
 import Card from "common/card"
 
-const Favorites = () => {
+const Choosen = () => {
   const { products } = useSelector((state) => state.products)
 
   //   console.log("ff", products)
@@ -18,11 +18,11 @@ const Favorites = () => {
         width: "100%",
       }}
     >
-      <ProductsTitle text="محبوب ترین ها" />
+      <ProductsTitle text="منتخبین" />
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         {p.map((product, i) => {
           const b =
-            i < 5 ? (
+            i % 2 == 1 ? (
               <></>
             ) : (
               <Box sx={{ width: "200px" }} key={i}>
@@ -36,4 +36,4 @@ const Favorites = () => {
   )
 }
 
-export default Favorites
+export default Choosen

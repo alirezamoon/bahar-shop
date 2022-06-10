@@ -50,6 +50,7 @@ const Main = () => {
             pagination={{ clickable: true }}
             autoplay={{ delay: 2000 }}
             style={{ height: "100%" }}
+            loopedSlides={true}
           >
             <SwiperSlide style={{ height: "100%" }}>
               <Box
