@@ -2,6 +2,7 @@ import { Box, IconButton, Typography } from "@mui/material"
 import LoginModal from "components/ui/loginModal"
 import Snackbar from "components/ui/snackbar"
 import { ShoppingBag } from "iconsax-react"
+import Link from "next/link"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"
@@ -71,11 +72,13 @@ const Card = ({ product, sx }) => {
           p: "32px",
         }}
       />
-      <Typography
-        sx={{ marginRight: "8px", fontWeight: 700, textAlign: "center" }}
-      >
-        {product?.title}
-      </Typography>
+      <Link href={`/products/${product.id}`}>
+        <Typography
+          sx={{ marginRight: "8px", fontWeight: 700, textAlign: "center" }}
+        >
+          {product?.title}
+        </Typography>
+      </Link>
       <Typography
         sx={{
           marginRight: "8px",
