@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material"
 import LoginModal from "components/ui/loginModal"
+import Snackbar from "components/ui/snackbar"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"
@@ -10,17 +11,28 @@ const Card = ({ product, sx }) => {
   const { user } = useSelector((state) => state.profile)
   const [openLoginModal, setOpenLoginModal] = useState(false)
 
+  const [snackbarVars, setSnackbarVars] = useState({
+    message: "",
+    open: false,
+    variant: "",
+  })
+
   const addToCartHandler = () => {
-    user?.username
-      ? dispatch(
-          user?.cart
-            ? addToCard({
-                username: user.username,
-                cart: [...user?.cart, product],
-              })
-            : addToCard({ username: user.username, cart: [product] })
-        )
-      : setOpenLoginModal(true)
+    if (user?.username) {
+      dispatch(
+        user?.cart
+          ? addToCard({
+              username: user.username,
+              cart: [...user?.cart, product],
+            })
+          : addToCard({ username: user.username, cart: [product] })
+      )
+      setSnackbarVars({
+        message: "محصول به سبد خرید اضافه شد",
+        variant: "success",
+        open: true,
+      })
+    } else setOpenLoginModal(true)
   }
 
   return (
@@ -74,6 +86,16 @@ const Card = ({ product, sx }) => {
       <LoginModal
         open={openLoginModal}
         handleClose={() => setOpenLoginModal(false)}
+      />
+      <Snackbar
+        message={snackbarVars.message}
+        open={snackbarVars.open}
+        handleClose={() =>
+          setSnackbarVars((prev) => {
+            return { ...prev, open: false }
+          })
+        }
+        variant={snackbarVars.variant}
       />
     </Box>
   )
