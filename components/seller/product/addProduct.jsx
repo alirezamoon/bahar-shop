@@ -5,6 +5,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addNewProduct } from "redux/appSlice/products"
 import { addProduct } from "redux/appSlice/profile"
+import { useAddProduct } from "services/apiFuncs"
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -19,9 +20,12 @@ const AddProduct = () => {
   const dispatch = useDispatch()
   const router = useRouter()
 
+  const { mutate } = useAddProduct()
+
   const addProductHandler = () => {
     dispatch(addProduct({ ...product, username: user.username }))
     dispatch(addNewProduct(product))
+    mutate(product)
     router.replace("/seller/products")
   }
   console.log(user)
