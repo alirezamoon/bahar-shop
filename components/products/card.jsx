@@ -74,7 +74,12 @@ const Card = ({ product, sx }) => {
       />
       <Link href={`/products/${product.id}`}>
         <Typography
-          sx={{ marginRight: "8px", fontWeight: 700, textAlign: "center" }}
+          sx={{
+            marginRight: "8px",
+            fontWeight: 700,
+            textAlign: "center",
+            cursor: "pointer",
+          }}
         >
           {product?.title}
         </Typography>

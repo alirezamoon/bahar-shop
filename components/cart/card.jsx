@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material"
+import Link from "next/link"
 import { splitNumber } from "utils/splitNum"
 
 const Card = ({ product }) => {
@@ -19,9 +20,13 @@ const Card = ({ product }) => {
         sx={{ width: "200px", height: "200px", p: "32px" }}
       />
       <Box>
-        <Typography sx={{ marginRight: "8px", fontWeight: 700 }}>
-          {product?.title}
-        </Typography>
+        <Link href={`/products/${product.id}`}>
+          <Typography
+            sx={{ marginRight: "8px", fontWeight: 700, cursor: "pointer" }}
+          >
+            {product?.title}
+          </Typography>
+        </Link>
         <Typography
           sx={{
             marginRight: "8px",

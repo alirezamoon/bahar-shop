@@ -6,8 +6,15 @@ export const productList = async () => {
   return data
 }
 
+export const productSingle = async (body) => {
+  const { data } = await Http.get(routes.products.single + body.queryKey[1])
+  return data
+}
+
 export const searchProduct = async (body) => {
-  const { data } = await Http.get(routes.products.list + "?title=نوژین")
+  const { data } = await Http.get(
+    routes.products.list + "?cat=" + body.queryKey[1]
+  )
   return data
 }
 

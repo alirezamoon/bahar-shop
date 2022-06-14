@@ -1,13 +1,14 @@
-import { Box, Button, Typography } from "@mui/material"
+import { Box, IconButton, Typography } from "@mui/material"
 import LoginModal from "components/ui/loginModal"
 import Snackbar from "components/ui/snackbar"
+import { ShoppingBag } from "iconsax-react"
 import Link from "next/link"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"
 import { splitNumber } from "utils/splitNum"
 
-const Card = ({ product, sx }) => {
+const Card = ({ product, sx, variant }) => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.profile)
   const [openLoginModal, setOpenLoginModal] = useState(false)
@@ -42,23 +43,38 @@ const Card = ({ product, sx }) => {
         maxWidth: "300px",
         width: "100%",
         bgcolor: "#fff",
-        borderRadius: "8px",
         overflow: "hidden",
+        boxShadow: "0 0 7px #ABB4BC ",
+        position: "relative",
+        paddingBottom: "32px",
+        // marginBottom: "32px",
+        // borderRadius: "8px",
         display: "flex",
         flexDirection: "column",
-        ...sx,
+        minHeight: "400px",
         height: "100%",
+        "&:hover button": {
+          display: "block",
+        },
+        ...sx,
       }}
     >
+      <IconButton
+        sx={{ display: "none", position: "absolute", top: "0" }}
+        onClick={addToCartHandler}
+      >
+        <ShoppingBag size="48" color="#007BFF" variant="Bulk" />
+      </IconButton>
       <Box
         component="img"
         src={product?.img}
         sx={{
           width: "100%",
-          flexGrow: 1,
+          height: "100%",
           maxHeight: "300px",
           objectFit: "cover",
-          p: "8px",
+          p: "32px",
+          flexGrow: 1,
         }}
       />
       <Link href={`/products/${product.id}`}>
@@ -83,14 +99,6 @@ const Card = ({ product, sx }) => {
       >
         {splitNumber(product?.price)} <span>تومان</span>
       </Typography>
-      <Button
-        color="blue"
-        sx={{ width: "100%", borderRadius: 0, marginTop: "12px" }}
-        variant="contained"
-        onClick={addToCartHandler}
-      >
-        افزودن به سبد خرید
-      </Button>
       <LoginModal
         open={openLoginModal}
         handleClose={() => setOpenLoginModal(false)}

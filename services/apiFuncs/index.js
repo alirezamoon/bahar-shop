@@ -6,9 +6,11 @@ import {
   useQuery,
   UseQueryResult,
 } from "react-query"
-import { addProduct, productList, searchProduct } from "./api"
+import { addProduct, productList, productSingle, searchProduct } from "./api"
 
 export const useProductList = () => useQuery(["productList"], productList)
+export const useProductSingle = (body) =>
+  useQuery(["productSingle", body.id], productSingle)
 export const useSearchProduct = (body) =>
-  useQuery(["productSearch", body?.title], searchProduct)
+  useQuery(["productSearch", body?.cat], searchProduct)
 export const useAddProduct = () => useMutation(addProduct)
