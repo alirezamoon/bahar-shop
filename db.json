@@ -6,7 +6,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     },
     {
       "id": "prod2",
@@ -14,7 +14,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet1.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     },
     {
       "id": "prod3",
@@ -22,7 +22,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet2.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     },
     {
       "id": "prod4",
@@ -30,7 +30,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet3.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     },
     {
       "id": "prod5",
@@ -38,7 +38,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet4.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     },
     {
       "id": "prod6",
@@ -46,7 +46,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet5.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     },
     {
       "id": "prod7",
@@ -54,7 +54,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet6.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     },
     {
       "id": "prod8",
@@ -62,7 +62,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet7.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     },
     {
       "id": "prod9",
@@ -70,7 +70,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet8.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     },
     {
       "id": "prod10",
@@ -78,7 +78,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet9.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     },
     {
       "id": "prod11",
@@ -86,7 +86,7 @@
       "price": "4000000",
       "img": "/assets/images/bracelet10.png",
       "count": 10,
-      "cat": "bracelet"
+      "cat": "beauty"
     }
   ],
   "users": [
@@ -101,21 +101,21 @@
           "price": "4000000",
           "img": "/assets/images/bracelet.png",
           "count": 10,
-          "cat": "bracelet"
+          "cat": "beauty"
         },
         {
           "title": "دستبند نوژین",
           "price": "4000000",
           "img": "/assets/images/bracelet1.png",
           "count": 10,
-          "cat": "bracelet"
+          "cat": "beauty"
         },
         {
           "title": "دستبند لاو",
           "price": "4000000",
           "img": "/assets/images/bracelet2.png",
           "count": 10,
-          "cat": "bracelet"
+          "cat": "beauty"
         }
       ]
     }

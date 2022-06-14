@@ -4,11 +4,13 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import { useSelector } from "react-redux"
 import SwiperCore, { EffectFade, Pagination, Autoplay } from "swiper"
+import { useProductList } from "services/apiFuncs"
 
 SwiperCore.use([EffectFade, Pagination, Autoplay])
 
 const Main = () => {
-  const { products } = useSelector((state) => state.products)
+  // const { products } = useSelector((state) => state.products)
+  // const { data: products } = useProductList()
 
   return (
     <Grid container sx={{ height: "370px", "&>div": { borderRadius: "16px" } }}>

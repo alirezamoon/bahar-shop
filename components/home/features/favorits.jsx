@@ -2,12 +2,14 @@ import { useSelector } from "react-redux"
 import { Box } from "@mui/material"
 import ProductsTitle from "common/productsTitle"
 import Card from "common/card"
+import { useProductList } from "services/apiFuncs"
 
 const Favorites = () => {
-  const { products } = useSelector((state) => state.products)
+  // const { products } = useSelector((state) => state.products)
+  const { data: products } = useProductList()
 
   //   console.log("ff", products)
-  const p = [...products]
+  // const p = [...products]
 
   return (
     <Box
@@ -20,9 +22,9 @@ const Favorites = () => {
     >
       <ProductsTitle text="محبوب ترین ها" />
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        {p.map((product, i) => {
+        {products?.reverse().map((product, i) => {
           const b =
-            i < 5 ? (
+            i > 5 ? (
               <></>
             ) : (
               <Box sx={{ width: "200px" }} key={i}>

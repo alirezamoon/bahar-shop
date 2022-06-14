@@ -2,9 +2,11 @@ import { useSelector } from "react-redux"
 import { Box, useMediaQuery, useTheme } from "@mui/material"
 import ProductsTitle from "common/productsTitle"
 import Card from "common/card"
+import { useProductList } from "services/apiFuncs"
 
 const Best = () => {
-  const { products } = useSelector((state) => state.products)
+  // const { products } = useSelector((state) => state.products)
+  const { data: products } = useProductList()
 
   return (
     <Box

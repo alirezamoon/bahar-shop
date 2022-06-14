@@ -2,10 +2,11 @@ import { useSelector } from "react-redux"
 import { Box } from "@mui/material"
 import ProductsTitle from "common/productsTitle"
 import Card from "common/card"
+import { useProductList } from "services/apiFuncs"
 
 const Choosen = () => {
-  const { products } = useSelector((state) => state.products)
-
+  // const { products } = useSelector((state) => state.products)
+  const { data: products } = useProductList()
   //   console.log("ff", products)
   const p = [...products]
 
