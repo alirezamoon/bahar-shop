@@ -47,11 +47,8 @@ const Toolbar = () => {
     loginMutate({})
     setShowLogoutBtn(false)
 
-    cart.map((product) => {
-      removeCartMutate(
-        { id: product.id },
-        { onSuccess: () => queryClient.refetchQueries(["cartProducts"]) }
-      )
+    cart.forEach((product) => {
+      removeCartMutate({ id: product.id })
     })
     router.push("/")
   }

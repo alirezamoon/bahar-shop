@@ -43,7 +43,11 @@ const LoginModal = ({ open, handleClose }) => {
               لطفا ابتدا وارد حساب کاربری خود شوید
             </Typography>
             <Link href={`/login`}>
-              <Button variant="contained" sx={{ width: "100px" }}>
+              <Button
+                variant="contained"
+                sx={{ width: "100px" }}
+                onClick={handleClose}
+              >
                 ورود
               </Button>
             </Link>
