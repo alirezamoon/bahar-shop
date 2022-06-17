@@ -3,11 +3,13 @@ import { Box, Button, Typography } from "@mui/material"
 import { useSelector } from "react-redux"
 import Card from "common/card"
 import { useRouter } from "next/router"
+import { useUserProducts } from "services/apiFuncs"
 
 const Products = () => {
   const router = useRouter()
 
   const { user } = useSelector((state) => state.profile)
+  const { data } = useUserProducts({ userId: user.id })
 
   return (
     <Box>
@@ -44,8 +46,8 @@ const Products = () => {
             // justifyContent: "space-between",
           }}
         >
-          {user?.products ? (
-            user?.products?.map((product, i) => (
+          {data ? (
+            data?.map((product, i) => (
               <Box
                 sx={{
                   marginBottom: "16px",

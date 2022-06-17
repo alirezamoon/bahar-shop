@@ -7,11 +7,16 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import { useState } from "react"
 import Snackbar from "components/ui/snackbar"
+import { useLogin, useUsersList } from "services/apiFuncs"
+import { useQueryClient } from "react-query"
 
 const Login = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { users } = useSelector((state) => state.profile)
+  const { data: userss } = useUsersList()
+  const { mutate: loginMutate } = useLogin()
+  const queryClient = useQueryClient()
 
   const [snackbarVars, setSnackbarVars] = useState({
     message: "",
@@ -36,11 +41,13 @@ const Login = () => {
       //   router.push("/")
       // }
 
-      users.map((user) => {
+      userss.map((user) => {
         if (user.username == values.username) {
           if (user.password == values.password) {
             dispatch(setUser(user))
+            loginMutate({ ...values, role: "user" })
             router.push("/")
+            queryClient.refetchQueries("userInfo")
           }
           setSnackbarVars({
             message: "رمزعبور اشتباه وارد شده است",

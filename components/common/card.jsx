@@ -3,14 +3,19 @@ import LoginModal from "components/ui/loginModal"
 import Snackbar from "components/ui/snackbar"
 import Link from "next/link"
 import { useState } from "react"
+import { useQueryClient } from "react-query"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"
+import { useAddToCart } from "services/apiFuncs"
 import { splitNumber } from "utils/splitNum"
 
 const Card = ({ product, sx }) => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.profile)
   const [openLoginModal, setOpenLoginModal] = useState(false)
+
+  const { mutate: addToCartMutate } = useAddToCart()
+  const queryClient = useQueryClient()
 
   const [snackbarVars, setSnackbarVars] = useState({
     message: "",
@@ -28,6 +33,16 @@ const Card = ({ product, sx }) => {
             })
           : addToCard({ username: user.username, cart: [product] })
       )
+
+      addToCartMutate(
+        { ...product },
+        {
+          onSuccess: () => {
+            queryClient.refetchQueries("cartProducts")
+          },
+        }
+      )
+
       setSnackbarVars({
         message: "محصول به سبد خرید اضافه شد",
         variant: "success",

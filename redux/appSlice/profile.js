@@ -12,10 +12,10 @@ const profileSlice = createSlice({
   reducers: {
     setUser(state, action) {
       let arr = [...state.users]
-      let index = arr.findIndex(
-        (obj) => obj.username === action.payload.username
+      let index = arr?.findIndex(
+        (obj) => obj?.username === action?.payload?.username
       )
-      state.user = { ...arr[index], ...action.payload }
+      state.user = { ...arr[index], ...action?.payload }
     },
     setUsers(state, action) {
       let arr = [...state.users]

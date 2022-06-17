@@ -9,15 +9,17 @@ import { addProduct } from "redux/appSlice/profile"
 import { useAddProduct } from "services/apiFuncs"
 
 const AddProduct = () => {
+  const { user } = useSelector((state) => state.profile)
+
   const [product, setProduct] = useState({
     title: "",
     price: null,
     quantity: null,
     img: null,
     cat: null,
+    userId: user.id,
   })
 
-  const { user } = useSelector((state) => state.profile)
   const dispatch = useDispatch()
   const router = useRouter()
   const queryClient = useQueryClient()
@@ -25,8 +27,8 @@ const AddProduct = () => {
   const { mutate } = useAddProduct()
 
   const addProductHandler = () => {
-    dispatch(addProduct({ ...product, username: user.username }))
-    dispatch(addNewProduct(product))
+    // dispatch(addProduct({ ...product, username: user.username }))
+    // dispatch(addNewProduct(product))
     mutate(product)
     router.replace("/seller/products")
     queryClient.refetchQueries(["productList"])

@@ -3,9 +3,10 @@ import LoginModal from "components/ui/loginModal"
 import Snackbar from "components/ui/snackbar"
 import { useRouter } from "next/router"
 import { useState } from "react"
+import { useQueryClient } from "react-query"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"
-import { useProductSingle } from "services/apiFuncs"
+import { useAddToCart, useProductSingle } from "services/apiFuncs"
 import { splitNumber } from "utils/splitNum"
 import RelativeProducts from "./relativeProducts"
 
@@ -23,6 +24,8 @@ const Product = () => {
     open: false,
     variant: "",
   })
+  const { mutate: addToCartMutate } = useAddToCart()
+  const queryClient = useQueryClient()
 
   const addToCartHandler = () => {
     if (user?.username) {
@@ -33,6 +36,14 @@ const Product = () => {
               cart: [...user?.cart, product],
             })
           : addToCard({ username: user.username, cart: [product] })
+      )
+      addToCartMutate(
+        { ...product },
+        {
+          onSuccess: () => {
+            queryClient.refetchQueries("cartProducts")
+          },
+        }
       )
       setSnackbarVars({
         message: "محصول به سبد خرید اضافه شد",

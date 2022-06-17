@@ -6,12 +6,15 @@ import Link from "next/link"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"
+import { useAddToCart } from "services/apiFuncs"
 import { splitNumber } from "utils/splitNum"
 
 const Card = ({ product, sx }) => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.profile)
   const [openLoginModal, setOpenLoginModal] = useState(false)
+
+  const { mutate: addToCartMutate } = useAddToCart()
 
   const [snackbarVars, setSnackbarVars] = useState({
     message: "",
@@ -29,6 +32,7 @@ const Card = ({ product, sx }) => {
             })
           : addToCard({ username: user.username, cart: [product] })
       )
+      addToCartMutate({ ...product })
       setSnackbarVars({
         message: "محصول به سبد خرید اضافه شد",
         variant: "success",

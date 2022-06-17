@@ -5,11 +5,14 @@ import { setUser, setUsers } from "redux/appSlice/profile"
 import { Box, Button, TextField } from "@mui/material"
 import { useRouter } from "next/router"
 import nextId from "react-id-generator"
+import { useAddUser, useLogin } from "services/apiFuncs"
 
 const Register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { users } = useSelector((state) => state.profile)
+  const { mutate: loginMutate } = useLogin()
+  const { mutate: addUserMutate } = useAddUser()
 
   const validationSchema = yup.object({
     username: yup.string().required(),
@@ -27,8 +30,10 @@ const Register = () => {
       if (users.some((user) => values.username == user.username)) {
         // repetetive user
       } else {
-        dispatch(setUser({ ...values, role: "user", id: id }))
-        dispatch(setUsers({ ...values, role: "user", id: id }))
+        // dispatch(setUser({ ...values, role: "user", id: id }))
+        // dispatch(setUsers({ ...values, role: "user", id: id }))
+        loginMutate({ ...values, role: "user" })
+        addUserMutate({ ...values, role: "user" })
         router.push("/")
       }
     },

@@ -1,17 +1,20 @@
 import { Button, Grid, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { useSelector } from "react-redux"
+import { useCartProducts } from "services/apiFuncs"
 import { splitNumber } from "utils/splitNum"
 import Card from "./card"
 
 const Cart = () => {
   const { user } = useSelector((state) => state.profile)
 
+  const { data } = useCartProducts()
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={8}>
         <Box>
-          {user?.cart?.map((product, i) => (
+          {data?.map((product, i) => (
             <Card product={product} key={i} />
           ))}
         </Box>
@@ -33,8 +36,8 @@ const Cart = () => {
               }}
             >
               {splitNumber(
-                user?.cart?.reduce((prev, current) => prev + +current.price, 0)
-              )}{" "}
+                data?.reduce((prev, current) => prev + +current.price, 0)
+              )}
               <span>تومان</span>
             </Typography>
           </Box>

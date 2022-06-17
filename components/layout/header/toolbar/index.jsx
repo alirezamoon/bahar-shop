@@ -4,19 +4,56 @@ import { Box, Button, Icon, IconButton, useTheme } from "@mui/material"
 import { User, HambergerMenu, ShoppingCart } from "iconsax-react"
 import Menu from "../menu"
 import Divider from "components/ui/divider"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import LoginModal from "components/ui/loginModal"
+import {
+  useCartProducts,
+  useLogin,
+  useRemoveFromCart,
+  useUserInfo,
+} from "services/apiFuncs"
+import { useEffect } from "react"
+import { setUser } from "redux/appSlice/profile"
+import Backdrop from "components/ui/backdrop"
+import { useQueryClient } from "react-query"
 
 const Toolbar = () => {
   const router = useRouter()
   const theme = useTheme()
   const [openLoginModal, setOpenLoginModal] = useState(false)
+  const [showLogoutBtn, setShowLogoutBtn] = useState(false)
+  const { mutate: loginMutate } = useLogin()
+
+  const dispatch = useDispatch()
+
+  const { data } = useUserInfo()
+  const { data: cart } = useCartProducts()
+  const { mutate: removeCartMutate } = useRemoveFromCart()
+  const queryClient = useQueryClient()
+
+  useEffect(() => {
+    dispatch(setUser(data))
+  }, [data])
 
   const [openDrawer, setOpenDrawer] = useState(false)
   const { user } = useSelector((state) => state.profile)
 
   const cartClickedHandler = () => {
     user?.username ? router.push("/cart") : setOpenLoginModal(true)
+  }
+
+  const logoutHandler = () => {
+    dispatch(setUser(null))
+    loginMutate({})
+    setShowLogoutBtn(false)
+
+    cart.map((product) => {
+      removeCartMutate(
+        { id: product.id },
+        { onSuccess: () => queryClient.refetchQueries(["cartProducts"]) }
+      )
+    })
+    router.push("/")
   }
 
   return (
@@ -69,45 +106,75 @@ const Toolbar = () => {
         </Box>
         <Menu openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <Box sx={{ display: "flex" }}>
-          <Button
-            sx={{
-              // bgcolor: "gray.light",
-              // color: "gray.main",
-              borderRadius: "8px",
-              padding: "12px 24px",
-              [theme.breakpoints.down("md")]: {
-                display: "none",
-              },
-            }}
-            color="gray"
-            variant="contained"
-            onClick={() => router.push("/login")}
-          >
-            <Box
-              component="span"
+          <Box sx={{ position: "relative" }}>
+            <Button
               sx={{
-                paddingLeft: "12px",
-                fontWeight: 400,
-                color: user?.username ? "gray.100" : "gray.center",
+                // bgcolor: "gray.light",
+                // color: "gray.main",
+                borderRadius: "8px",
+                padding: "12px 24px",
+
                 [theme.breakpoints.down("md")]: {
                   display: "none",
                 },
               }}
-            >
-              {user?.username ? user.username : "ورود"}
-            </Box>
-            <Icon
-              sx={{
-                // color: "#00664A",
-                [theme.breakpoints.down("md")]: {
-                  color: "#FFF",
-                },
+              color="gray"
+              variant="contained"
+              onClick={() => {
+                user?.username ? setShowLogoutBtn(true) : router.push("/login")
               }}
-              component={User}
-              set="light"
-              size="12"
-            />
-          </Button>
+            >
+              <Box
+                component="span"
+                sx={{
+                  paddingLeft: "12px",
+                  fontWeight: 400,
+                  color: user?.username ? "gray.100" : "gray.center",
+                  [theme.breakpoints.down("md")]: {
+                    display: "none",
+                  },
+                }}
+              >
+                {user?.username ? user.username : "ورود"}
+              </Box>
+              <Icon
+                sx={{
+                  // color: "#00664A",
+                  [theme.breakpoints.down("md")]: {
+                    color: "#FFF",
+                  },
+                }}
+                component={User}
+                set="light"
+                size="12"
+              />
+            </Button>
+            {showLogoutBtn && (
+              <Box>
+                <Button
+                  onClick={logoutHandler}
+                  color="gray"
+                  variant="contained"
+                  sx={{
+                    position: "absolute",
+                    width: "170px",
+                    top: "105%",
+                    left: 0,
+                    border: "1px solid #ddd",
+                    borderRadius: "8px",
+                    zIndex: 101,
+                    boxShadow: "0 0 50px 5px #fff",
+                  }}
+                >
+                  خروج از حساب کاربری
+                </Button>
+                <Backdrop
+                  show={showLogoutBtn}
+                  hide={() => setShowLogoutBtn(false)}
+                />
+              </Box>
+            )}
+          </Box>
           <Button
             sx={{
               // bgcolor: "gray.light",
@@ -148,7 +215,7 @@ const Toolbar = () => {
               set="light"
               size="12"
             />
-            {user?.cart && (
+            {/* {cart?.length > 0 && (
               <Box
                 sx={{
                   position: "absolute",
@@ -161,9 +228,9 @@ const Toolbar = () => {
                   color: "#fff",
                 }}
               >
-                {user?.cart.length}
+                {cart?.length}
               </Box>
-            )}
+            )} */}
           </Button>
         </Box>
       </Box>

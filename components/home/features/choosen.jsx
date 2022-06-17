@@ -8,7 +8,7 @@ const Choosen = () => {
   // const { products } = useSelector((state) => state.products)
   const { data: products } = useProductList()
   //   console.log("ff", products)
-  const p = [...products]
+  // const p = [...products]
 
   return (
     <Box
@@ -21,9 +21,9 @@ const Choosen = () => {
     >
       <ProductsTitle text="منتخبین" />
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        {p.map((product, i) => {
+        {products?.map((product, i) => {
           const b =
-            i % 2 == 1 ? (
+            i > 5 ? (
               <></>
             ) : (
               <Box sx={{ width: "200px" }} key={i}>
