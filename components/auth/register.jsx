@@ -32,6 +32,7 @@ const Register = () => {
       } else {
         // dispatch(setUser({ ...values, role: "user", id: id }))
         // dispatch(setUsers({ ...values, role: "user", id: id }))
+        dispatch(setUser(user))
         loginMutate({ ...values, role: "user" })
         addUserMutate({ ...values, role: "user" })
         router.push("/")

@@ -112,8 +112,24 @@
       "password": "a",
       "role": "user",
       "id": "BkgTVbI"
+    },
+    {
+      "username": "علیرضا",
+      "password": "1234",
+      "role": "user",
+      "id": "oU0BZmD"
+    },
+    {
+      "username": "alireza",
+      "password": "1234",
+      "role": "user",
+      "id": "1_69-xB"
     }
   ],
-  "user": {},
+  "user": {
+    "username": "alireza",
+    "password": "1234",
+    "role": "user"
+  },
   "cart": []
 }
