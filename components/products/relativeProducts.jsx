@@ -44,6 +44,7 @@ const RelativeProducts = ({ cat }) => {
               marginLeft: 0,
               marginRight: 0,
             }}
+            key={i}
           >
             <Card product={product} variant="single" key={i} />
           </SwiperSlide>
