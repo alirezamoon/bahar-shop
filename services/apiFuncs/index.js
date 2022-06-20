@@ -20,6 +20,9 @@ import {
   removeFromCart,
   logout,
   cartProducts,
+  addFavProduct,
+  favProductsList,
+  allFavProducts,
 } from "./api"
 
 export const useProductList = () => useQuery(["productList"], productList)
@@ -45,3 +48,14 @@ export const useUserInfo = () => useQuery(["userInfo"], userInfo)
 export const useCartProducts = () => useQuery(["cartProducts"], cartProducts)
 export const useAddToCart = () => useMutation(addToCart)
 export const useRemoveFromCart = () => useMutation(removeFromCart)
+
+// fav
+export const useAddFavProduct = () => useMutation(addFavProduct)
+export const useFavProductsList = () =>
+  useQuery(["favProductsList"], favProductsList)
+export const useAllFavProducts = (body) =>
+  useQuery(
+    ["allFavProducts", body?.cat1, body?.cat2, body?.cat3],
+    allFavProducts,
+    { enabled: body.enabled }
+  )

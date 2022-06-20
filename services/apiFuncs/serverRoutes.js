@@ -14,6 +14,10 @@ const serverRoutes = {
     main: "cart",
     slash: "cart/",
   },
+  fav: {
+    main: "favProducts",
+    slash: "favProducts/",
+  },
 }
 
 export default serverRoutes

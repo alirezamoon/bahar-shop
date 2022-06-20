@@ -1,11 +1,18 @@
 import { Grid } from "@mui/material"
+import { useAllFavProducts } from "services/apiFuncs"
 import Best from "./features/best"
 import Choosen from "./features/choosen"
 import Favorites from "./features/favorits"
 import Main from "./features/main"
+import Recommended from "./features/recommend"
 import Seller from "./seller"
 
 const Home = () => {
+  const { data } = useAllFavProducts({
+    cat1: "beauty",
+    cat2: "game",
+    cat3: "clothes",
+  })
   return (
     <Grid container>
       <Grid xs={12} item>
@@ -22,6 +29,9 @@ const Home = () => {
       </Grid>
       <Grid xs={12} item>
         <Choosen />
+      </Grid>
+      <Grid xs={12} item>
+        <Recommended products={data} />
       </Grid>
     </Grid>
   )

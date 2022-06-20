@@ -3,10 +3,16 @@ import LoginModal from "components/ui/loginModal"
 import Snackbar from "components/ui/snackbar"
 import { ShoppingBag } from "iconsax-react"
 import Link from "next/link"
+import { useEffect } from "react"
 import { useState } from "react"
+import { useQueryClient } from "react-query"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"
-import { useAddToCart } from "services/apiFuncs"
+import {
+  useAddFavProduct,
+  useAddToCart,
+  useFavProductsList,
+} from "services/apiFuncs"
 import { splitNumber } from "utils/splitNum"
 
 const Card = ({ product, sx }) => {
@@ -22,6 +28,17 @@ const Card = ({ product, sx }) => {
     variant: "",
   })
 
+  const { data: favs } = useFavProductsList()
+
+  // let fav = []
+
+  // useEffect(() => {
+  //   fav = favs?.length > 0 ? [...favs] : []
+  // }, [favs])
+
+  const { mutate: addFavMutate } = useAddFavProduct()
+  const queryClient = useQueryClient()
+
   const addToCartHandler = () => {
     if (user?.username) {
       dispatch(
@@ -32,7 +49,28 @@ const Card = ({ product, sx }) => {
             })
           : addToCard({ username: user.username, cart: [product] })
       )
-      addToCartMutate({ ...product })
+      const index = favs.findIndex((item) => item.cat === product.cat)
+      let fav = [...favs]
+      if (index != -1) {
+        fav[index].count++
+
+        addFavMutate(
+          { ...fav[index] },
+          {
+            onSuccess: () => {
+              queryClient.refetchQueries("favProductsList")
+            },
+          }
+        )
+      }
+      addToCartMutate(
+        { ...product },
+        {
+          onSuccess: () => {
+            queryClient.refetchQueries("cartProducts")
+          },
+        }
+      )
       setSnackbarVars({
         message: "محصول به سبد خرید اضافه شد",
         variant: "success",

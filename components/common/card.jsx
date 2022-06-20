@@ -2,26 +2,31 @@ import { Box, Button, Typography } from "@mui/material"
 import LoginModal from "components/ui/loginModal"
 import Snackbar from "components/ui/snackbar"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useQueryClient } from "react-query"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"
-import { useAddToCart } from "services/apiFuncs"
+import {
+  useAddFavProduct,
+  useAddToCart,
+  useFavProductsList,
+} from "services/apiFuncs"
 import { splitNumber } from "utils/splitNum"
 
 const Card = ({ product, sx }) => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.profile)
   const [openLoginModal, setOpenLoginModal] = useState(false)
-
-  const { mutate: addToCartMutate } = useAddToCart()
-  const queryClient = useQueryClient()
-
   const [snackbarVars, setSnackbarVars] = useState({
     message: "",
     open: false,
     variant: "",
   })
+  const { data: favs } = useFavProductsList()
+
+  const { mutate: addToCartMutate } = useAddToCart()
+  const { mutate: addFavMutate } = useAddFavProduct()
+  const queryClient = useQueryClient()
 
   const addToCartHandler = () => {
     if (user?.username) {
@@ -33,7 +38,20 @@ const Card = ({ product, sx }) => {
             })
           : addToCard({ username: user.username, cart: [product] })
       )
+      const index = favs.findIndex((item) => item.cat === product.cat)
+      let fav = [...favs]
+      if (index != -1) {
+        fav[index].count++
 
+        addFavMutate(
+          { ...fav[index] },
+          {
+            onSuccess: () => {
+              queryClient.refetchQueries("favProductsList")
+            },
+          }
+        )
+      }
       addToCartMutate(
         { ...product },
         {

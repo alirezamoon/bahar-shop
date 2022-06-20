@@ -76,3 +76,28 @@ export const removeFromCart = async (body) => {
   const { data } = await Http.delete(routes.cart.slash + body.id)
   return data
 }
+
+// fav
+
+export const addFavProduct = async (body) => {
+  const { data } = await Http.put(routes.fav.slash + body.id, { ...body })
+  return data
+}
+
+export const favProductsList = async () => {
+  const { data } = await Http.get(routes.fav.main)
+  return data
+}
+
+export const allFavProducts = async (body) => {
+  const { data } = await Http.get(
+    routes.products.list +
+      "?cat=" +
+      body.queryKey[1] +
+      "&cat=" +
+      body.queryKey[2] +
+      "&cat=" +
+      body.queryKey[3]
+  )
+  return data
+}
