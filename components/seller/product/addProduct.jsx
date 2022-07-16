@@ -27,8 +27,6 @@ const AddProduct = () => {
   const { mutate } = useAddProduct()
 
   const addProductHandler = () => {
-    // dispatch(addProduct({ ...product, username: user.username }))
-    // dispatch(addNewProduct(product))
     mutate(product)
     router.replace("/seller/products")
     queryClient.refetchQueries(["productList"])

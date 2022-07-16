@@ -2,10 +2,11 @@ import { useFormik } from "formik"
 import * as yup from "yup"
 import { useDispatch, useSelector } from "react-redux"
 import { setUser, setUsers } from "redux/appSlice/profile"
-import { Box, Button, TextField } from "@mui/material"
+import { Box, Button, TextField, Typography } from "@mui/material"
 import { useRouter } from "next/router"
 import nextId from "react-id-generator"
 import { useAddUser, useLogin } from "services/apiFuncs"
+import Link from "next/link"
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -85,18 +86,17 @@ const Register = () => {
           helperText={formik.touched.password && formik.errors.password}
           type="password"
         />
-        {/* <TextField
-          name="phone"
-          onChange={formik.handleChange}
-          value={formik.values.phone}
-          placeholder="شماره موبایل خود را وارد کنید"
-          size="small"
-          error={Boolean(formik.errors.phone) && formik.touched.phone}
-          helperText={formik.touched.phone && formik.errors.phone}
-        /> */}
         <Button type="submit" variant="contained" sx={{ width: "100%" }}>
-          ورود
+          ثبت نام
         </Button>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography sx={{ fontSize: "14px" }}>
+            قبلا ثبت نام کردید ؟
+          </Typography>
+          <Link href="/login">
+            <Button variant="text">ورود</Button>
+          </Link>
+        </Box>
       </Box>
     </Box>
   )
