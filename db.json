@@ -98,24 +98,6 @@
       "count": 10,
       "cat": "beauty",
       "userId": "1"
-    },
-    {
-      "title": "dddd",
-      "price": "dd",
-      "quantity": "dddd",
-      "img": "blob:http://localhost:3001/cbab4e08-7c05-4415-a6b0-e75c03f1ea3c",
-      "cat": "digital",
-      "userId": "1",
-      "id": "x1Kx4Ac"
-    },
-    {
-      "title": "a",
-      "price": "a",
-      "quantity": "a",
-      "img": "blob:http://localhost:3001/ca7d1544-334b-4590-ac51-af21627a2e4f",
-      "cat": "tools",
-      "userId": "1",
-      "id": "_mDt8A2"
     }
   ],
   "users": [
