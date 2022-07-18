@@ -12,6 +12,7 @@ import {
   useAddFavProduct,
   useAddToCart,
   useFavProductsList,
+  useUserInfo,
 } from "services/apiFuncs"
 import { splitNumber } from "utils/splitNum"
 
@@ -21,6 +22,7 @@ const Card = ({ product, sx }) => {
   const [openLoginModal, setOpenLoginModal] = useState(false)
 
   const { mutate: addToCartMutate } = useAddToCart()
+  const { data: userInfo } = useUserInfo()
 
   const [snackbarVars, setSnackbarVars] = useState({
     message: "",
@@ -40,7 +42,7 @@ const Card = ({ product, sx }) => {
   const queryClient = useQueryClient()
 
   const addToCartHandler = () => {
-    if (user?.username) {
+    if (userInfo?.username) {
       dispatch(
         user?.cart
           ? addToCard({

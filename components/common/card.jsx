@@ -10,6 +10,7 @@ import {
   useAddFavProduct,
   useAddToCart,
   useFavProductsList,
+  useUserInfo,
 } from "services/apiFuncs"
 import { splitNumber } from "utils/splitNum"
 
@@ -23,13 +24,14 @@ const Card = ({ product, sx }) => {
     variant: "",
   })
   const { data: favs } = useFavProductsList()
+  const { data: userInfo } = useUserInfo()
 
   const { mutate: addToCartMutate } = useAddToCart()
   const { mutate: addFavMutate } = useAddFavProduct()
   const queryClient = useQueryClient()
 
   const addToCartHandler = () => {
-    if (user?.username) {
+    if (userInfo?.username) {
       dispatch(
         user?.cart
           ? addToCard({

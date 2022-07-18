@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCard } from "redux/appSlice/profile"
-import { useAddToCart } from "services/apiFuncs"
+import { useAddToCart, useUserInfo } from "services/apiFuncs"
 import { splitNumber } from "utils/splitNum"
 
 const Card = ({ product, sx, variant }) => {
@@ -14,6 +14,7 @@ const Card = ({ product, sx, variant }) => {
   const { user } = useSelector((state) => state.profile)
   const [openLoginModal, setOpenLoginModal] = useState(false)
   const { mutate: addToCartMutate } = useAddToCart()
+  const { data: userInfo } = useUserInfo()
 
   const [snackbarVars, setSnackbarVars] = useState({
     message: "",
@@ -22,7 +23,7 @@ const Card = ({ product, sx, variant }) => {
   })
 
   const addToCartHandler = () => {
-    if (user?.username) {
+    if (userInfo?.username) {
       dispatch(
         user?.cart
           ? addToCard({

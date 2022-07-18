@@ -39,12 +39,20 @@ const Toolbar = () => {
   const { user } = useSelector((state) => state.profile)
 
   const cartClickedHandler = () => {
-    user?.username ? router.push("/cart") : setOpenLoginModal(true)
+    data?.username ? router.push("/cart") : setOpenLoginModal(true)
   }
 
   const logoutHandler = () => {
     dispatch(setUser(null))
-    loginMutate({})
+    loginMutate(
+      {},
+      {
+        onSuccess: () => {
+          queryClient.refetchQueries("userInfo")
+          router.reload(window.location.pathname)
+        },
+      }
+    )
     setShowLogoutBtn(false)
 
     cart.forEach((product) => {
@@ -118,7 +126,7 @@ const Toolbar = () => {
               color="gray"
               variant="contained"
               onClick={() => {
-                user?.username ? setShowLogoutBtn(true) : router.push("/login")
+                data?.username ? setShowLogoutBtn(true) : router.push("/login")
               }}
             >
               <Box
@@ -126,13 +134,13 @@ const Toolbar = () => {
                 sx={{
                   paddingLeft: "12px",
                   fontWeight: 400,
-                  color: user?.username ? "gray.100" : "gray.center",
+                  color: data?.username ? "gray.100" : "gray.center",
                   [theme.breakpoints.down("md")]: {
                     display: "none",
                   },
                 }}
               >
-                {user?.username ? user.username : "ورود"}
+                {data?.username ? data.username : "ورود"}
               </Box>
               <Icon
                 sx={{

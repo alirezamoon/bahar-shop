@@ -45,9 +45,16 @@ const Login = () => {
         if (user.username == values.username) {
           if (user.password == values.password) {
             dispatch(setUser(user))
-            loginMutate({ ...values, role: "user" })
+            loginMutate(
+              { ...values, role: "user" },
+              {
+                onSuccess: () => {
+                  queryClient.refetchQueries("userInfo")
+                  router.reload(window.location.pathname)
+                },
+              }
+            )
             router.push("/")
-            queryClient.refetchQueries("userInfo")
           }
           setSnackbarVars({
             message: "رمزعبور اشتباه وارد شده است",

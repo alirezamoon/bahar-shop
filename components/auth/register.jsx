@@ -5,15 +5,20 @@ import { setUser, setUsers } from "redux/appSlice/profile"
 import { Box, Button, TextField, Typography } from "@mui/material"
 import { useRouter } from "next/router"
 import nextId from "react-id-generator"
-import { useAddUser, useLogin } from "services/apiFuncs"
+import { useAddUser, useLogin, useUsersList } from "services/apiFuncs"
 import Link from "next/link"
+import { useQueryClient } from "react-query"
 
 const Register = () => {
   const dispatch = useDispatch()
   const router = useRouter()
-  const { users } = useSelector((state) => state.profile)
+  // const { users } = useSelector((state) => state.profile)
   const { mutate: loginMutate } = useLogin()
   const { mutate: addUserMutate } = useAddUser()
+  const queryClient = useQueryClient()
+
+  const { data: users } = useUsersList()
+  // console.log(users)
 
   const validationSchema = yup.object({
     username: yup.string().required(),
@@ -28,13 +33,23 @@ const Register = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       const id = nextId()
+      // console.log(values.username, user.username)
       if (users.some((user) => values.username == user.username)) {
         // repetetive user
+        console.log("ddddddd")
       } else {
         // dispatch(setUser({ ...values, role: "user", id: id }))
         // dispatch(setUsers({ ...values, role: "user", id: id }))
-        dispatch(setUser(user))
-        loginMutate({ ...values, role: "user" })
+        // dispatch(setUser(user))
+        loginMutate(
+          { ...values, role: "user" },
+          {
+            onSuccess: () => {
+              queryClient.refetchQueries("userInfo")
+              router.reload(window.location.pathname)
+            },
+          }
+        )
         addUserMutate({ ...values, role: "user" })
         router.push("/")
       }
